@@ -3,7 +3,7 @@ const path = require('path');
 var notes = JSON.parse(data)
 
 
-applicationCache.get("/api/notes", function(req, res){
+app.get("/api/notes", function(req, res){
     res.JSON(notes);
 });
 
