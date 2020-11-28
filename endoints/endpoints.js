@@ -29,7 +29,7 @@ module.exports = app => {
             });
 
         app.delete("/api/notes/:id", function (req, res) {
-                notes.filter(req.params.id, 1);
+                notes.filter(notes[req.params.id]);
                 updateDb();
                 console.log("You deleted note: "+newNotes.title+"from your library.")
             });
