@@ -31,11 +31,11 @@ module.exports = app => {
             });
 
         app.delete("/api/notes/:id", function (req, res) {
-                notes.filter(req.params.id, [notes]);
+                notes.filter(req.params.id, 1);
                 updateDb();
                 console.log("You deleted note: "+req.params.id+"from your library.")
             });
-        app.get("/notes", function (req, res) {
+        app.get('/notes', function (req, res) {
                 return res.sendFile(path.join(__dirname, "../public/notes.html"));
             });
 
