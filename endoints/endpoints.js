@@ -22,10 +22,10 @@ module.exports = app => {
             let newNotes = req.body;
             notes.push(newNotes);
             updateDb();
-            return console.log("You added new note: "+newNotes.title+"to your library.") 
+            return console.log("You added new note: "+newNotes.title+" to your library.") 
         });
         app.get("/api/notes/:id", function (req, res) {
-                return res.json(notes[req.params.id]);
+                res.json(notes[req.params.id]);
             });
 
         app.delete("/api/notes/:id", function (req, res) {
