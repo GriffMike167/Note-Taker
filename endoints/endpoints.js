@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exposrts = app => {
 
-    fs.readFile('db/db.json', 'utf8', function(err,data){
+    fs.readFile('db/db.json', 'utf8', (err,data) => {
         if (err){
             return console.log(err);
         }
@@ -29,9 +29,9 @@ module.exposrts = app => {
                 updateDb();
                 console.log("You deleted note: "+newNotes.title+"from your library.")
             });
-        app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "public/notes.html")));
+        app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "../public/notes.html")));
 
-        app.get('*', (req, res) => res.sendFile(path.join(__dirname, "public/index.html")));
+        app.get('*', (req, res) => res.sendFile(path.join(__dirname, "../public/index.html")));
 
         function updateDb() {
             fs.writeFile("db/db.json", JSON.stringify(notes), err => {
