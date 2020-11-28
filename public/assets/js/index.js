@@ -116,7 +116,7 @@ const renderNoteList = (notes) => {
 
     if (withDeleteButton) {
       const $delBtn = $(
-        "<i class='fas fa-trash-alt float-right text-danger delete-note data=id'>"
+        "<i class='fas fa-trash-alt float-right text-danger delete-note data-id='0'>"
       );
       $li.append($delBtn);
     }
