@@ -25,11 +25,13 @@ module.exports = app => {
             return console.log("You added new note: "+newNotes.title+" to your library.") 
         });
         app.get("/api/notes/:id", function (req, res) {
-                res.json(notes[req.params.id]);
+                let id = req.params.notes
+                console.log(id)
+                res.json(req.params.notes);
             });
 
         app.delete("/api/notes/:id", function (req, res) {
-                notes.splice(req.params.id, 1);
+                notes.filter(req.params.id, [notes]);
                 updateDb();
                 console.log("You deleted note: "+req.params.id+"from your library.")
             });
@@ -42,7 +44,7 @@ module.exports = app => {
             });
 
         function updateDb() {
-            fs.writeFile("db/db.json", JSON.stringify(notes,'\t'), err => {
+            fs.writeFile("db/db.json", JSON.stringify(notes), err => {
                 if (err) throw err;
                 return true;
 
