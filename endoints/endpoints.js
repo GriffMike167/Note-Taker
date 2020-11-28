@@ -14,7 +14,9 @@ module.exports = app => {
 
         
         
-        app.get("/api/notes", (req, res) => res.JSON(notes));
+        app.get("/api/notes", function (req, res) {
+                return res.JSON(notes);
+            });
 
         app.post("/api/notes", function(req, res){
             let newNotes = req.body;
@@ -22,16 +24,22 @@ module.exports = app => {
             updateDb();
             return console.log("You added new note: "+newNotes.title+"to your library.") 
         });
-        app.get("/api/notes/:id", (req, res) => res.JSON(notes[req.params.id]));
+        app.get("/api/notes/:id", function (req, res) {
+                return res.JSON(notes[req.params.id]);
+            });
 
         app.delete("/api/notes/:id", function (req, res) {
                 notes.filter(req.params.id, 1);
                 updateDb();
                 console.log("You deleted note: "+newNotes.title+"from your library.")
             });
-        app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "../public/notes.html")));
+        app.get("/notes", function (req, res) {
+                return res.sendFile(path.join(__dirname, "../public/notes.html"));
+            });
 
-        app.get('*', (req, res) => res.sendFile(path.join(__dirname, "../public/index.html")));
+        app.get('*', function (req, res) {
+                return res.sendFile(path.join(__dirname, "../public/index.html"));
+            });
 
         function updateDb() {
             fs.writeFile("db/db.json", JSON.stringify(notes), err => {
@@ -39,7 +47,7 @@ module.exports = app => {
                 return true;
 
             });
-        }
+        };
 
 
     });
