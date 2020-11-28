@@ -15,7 +15,7 @@ module.exports = app => {
         
         
         app.get("/api/notes", function (req, res) {
-                return res.json(notes);
+                 res.json(notes);
             });
 
         app.post("/api/notes", function(req, res){
@@ -25,9 +25,9 @@ module.exports = app => {
             return console.log("You added new note: "+newNotes.title+" to your library.") 
         });
         app.get("/api/notes/:id", function (req, res) {
-                let id = req.params.notes
+                
                 console.log(id)
-                res.json(req.params.notes);
+                res.json(req.params.id);
             });
 
         app.delete("/api/notes/:id", function (req, res) {
