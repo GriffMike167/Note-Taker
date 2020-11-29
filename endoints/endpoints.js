@@ -15,7 +15,7 @@ module.exports = app => {
         
         
         app.get("/api/notes", function (req, res) {
-                 res.json(notes);
+                res.json(notes);
             });
 
         app.post("/api/notes", function(req, res){
@@ -25,9 +25,7 @@ module.exports = app => {
             return console.log("You added new note: "+newNotes.title+" to your library.") 
         });
         app.get("/api/notes/:id", function (req, res) {
-                
-                console.log(id)
-                res.json(req.params.id);
+                res.json(notes[req.params.id]);
             });
 
         app.delete("/api/notes/:id", function (req, res) {
@@ -35,7 +33,7 @@ module.exports = app => {
                 updateDb();
                 console.log("You deleted note: "+req.params.id+"from your library.")
             });
-        app.get('/notes', function (req, res) {
+        app.get("/notes", function (req, res) {
                 return res.sendFile(path.join(__dirname, "../public/notes.html"));
             });
 
@@ -44,7 +42,7 @@ module.exports = app => {
             });
 
         function updateDb() {
-            fs.writeFile("db/db.json", JSON.stringify(notes), err => {
+            fs.writeFile("db/db.json", JSON.stringify(newNotes), err => {
                 if (err) throw err;
                 return true;
 
