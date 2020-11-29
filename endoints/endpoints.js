@@ -5,9 +5,9 @@ const path = require('path');
 module.exports = app => {
 
     fs.readFile('db/db.json', 'utf8', (err,data) => {
-        if (err){
-            return console.log(err);
-        }
+        if (err) throw err;
+            
+        
 
 
         var notes = JSON.parse(data)
@@ -15,7 +15,7 @@ module.exports = app => {
         
         
         app.get("/api/notes", function (req, res) {
-                return res.json(notes);
+                res.json(notes);
             });
 
         app.post("/api/notes", function(req, res){
