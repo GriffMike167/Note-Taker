@@ -36,7 +36,7 @@ const deleteNote = (id) => {
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
 
-  if (activeNote.id === "number") {
+  if (activeNote.id) {
     $noteTitle.attr("readonly", true);
     $noteText.attr("readonly", true);
     $noteTitle.val(activeNote.title);
@@ -110,19 +110,18 @@ const renderNoteList = (notes) => {
   // Returns jquery object for li with given text and delete button
   // unless withDeleteButton argument is provided as false
   const create$li = (text, withDeleteButton = true) => {
-    const $li = $("<li class='list-group-item'>").data(note);
+    const $li = $("<li class='list-group-item'>");
     const $span = $("<span>").text(text);
     $li.append($span);
 
     if (withDeleteButton) {
       const $delBtn = $(
-        "<i class='fas fa-trash-alt float-right text-danger delete-note' data-id="+i+">"
+        "<i class='fas fa-trash-alt float-right text-danger delete-note' data-id=''>"
       );
       $li.append($delBtn);
     }
     return $li;
   };
-
 
   if (notes.length === 0) {
     noteListItems.push(create$li("No saved Notes", false));
