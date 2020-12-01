@@ -25,13 +25,24 @@ module.exports = app => {
             return console.log("You added new note: "+newNotes.title+" to your library.") 
         });
         app.get("/api/notes/:id", function (req, res) {
-                res.json(notes[req.params.newNotes]);
+            var chosen = req.params.id;
+
+            console.log(chosen);
+          
+            for (var i = 0; i < notes.length; i++) {
+              if (chosen === notes[i].routeName) {
+                return res.json(notes[i]);
+              }
+            }
+          
+            return res.json(false);
+                // res.json(notes[req.params.id]);
             });
 
         app.delete("/api/notes/:id", function (req, res) {
-                notes.splice(req.params.newNotes, 1);
+                notes.splice(req.params.id, 1);
                 updateDb();
-                console.log("You deleted note: "+req.params.newNotes+"from your library.")
+                console.log("You deleted note: "+req.params.id+"from your library.")
             });
         app.get("/notes", function (req, res) {
                 return res.sendFile(path.join(__dirname, "../public/notes.html"));
