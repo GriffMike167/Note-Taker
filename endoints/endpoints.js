@@ -27,7 +27,8 @@ module.exports = app => {
         });
         app.get("/api/notes/:id", function (req, res) {
             res.json(notes[req.params.id]);
-            return res.json(true)
+            console.log(req.params.id)
+            return res.json(req.params.id)
 
             // console.log(chosen);
           
