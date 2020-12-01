@@ -26,9 +26,11 @@ module.exports = app => {
             return res.json(newNotes)
         });
         app.get("/api/notes/:id", function (req, res) {
-            res.json(notes[req.params.id]);
-            console.log(req.params.id)
-            return res.json(req.params.id)
+            let newNotes = req.body;
+
+            // res.json(notes[req.params.id]);
+            // console.log(req.params.id)
+            // return res.json(req.params.id)
 
             // console.log(chosen);
           
@@ -43,9 +45,10 @@ module.exports = app => {
             });
 
         app.delete("/api/notes/:id", function (req, res) {
-                notes.splice(req.params.id, 1);
+                let newNotes = req.body;
+                notes.splice(newNotes);
                 updateDb();
-                console.log("You deleted note: "+req.params.id+"from your library.")
+                console.log("You deleted note: "+newNotes.title+"from your library.")
                 return res.json(notes)
             });
         app.get("/notes", function (req, res) {
