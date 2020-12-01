@@ -24,10 +24,11 @@ module.exports = app => {
             updateDb();
             console.log("You added new note: "+newNotes.title+" to your library.") 
             return res.json(newNotes)
+            
         });
         app.get("/api/notes/:id", function (req, res) {
-            let newNotes = req.body;
-
+           
+            
             // res.json(notes[req.params.id]);
             // console.log(req.params.id)
             // return res.json(req.params.id)
