@@ -27,7 +27,7 @@ module.exports = app => {
             
         });
         app.get("/api/notes/:id", function (req, res) {
-            res.json(notes[req.params.id]);
+            res.json(notes);
             
             // res.json(notes[req.params.id]);
             // console.log(req.params.id)
