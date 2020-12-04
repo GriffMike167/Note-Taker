@@ -14,9 +14,21 @@ module.exports = app => {
 
         
         
-        app.get("/api/notes", function (req, res) {
-                res.json(notes);
-            });
+            app.get("/api/notes/:id", function(req, res) {
+            // What does this code do?
+            var chosen = req.params.id;
+            console.log(chosen);
+          
+            // What does this code do?
+            for (var i = 0; i < notes.length; i++) {
+              if (chosen === notes[i].routeName) {
+                return res.json(notes[i]);
+              }
+            }
+          
+            // What does this code do?
+            return res.send("No character found");
+          });
 
         app.post("/api/notes", function(req, res){
             let newNotes = req.body;
@@ -27,7 +39,7 @@ module.exports = app => {
             
         });
         
-        app.delete("/api/notes/:id", function (req, res) {
+        app.delete("/:id", function (req, res) {
             res.json(notes);
             
         
