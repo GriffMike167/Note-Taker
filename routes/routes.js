@@ -27,7 +27,7 @@ module.exports = app => {
             
         });
         app.get("/api/notes/:id", function (req, res) {
-           
+            res.json(notes[req.params.id]);
             
             // res.json(notes[req.params.id]);
             // console.log(req.params.id)
@@ -46,7 +46,7 @@ module.exports = app => {
             });
 
         app.delete("/api/notes/:id", function (req, res) {
-                let newNotes = req.body;
+                
                 notes.splice(newNotes);
                 updateDb();
                 console.log("You deleted note: "+newNotes.title+"from your library.")

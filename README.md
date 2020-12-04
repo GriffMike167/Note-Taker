@@ -1,11 +1,13 @@
 <h1 align="center">Note Taker</h1>
 
-<button name="button" onclick="https://morning-headland-66565.herokuapp.com/">Note Taking App</button>
+
+[Note Taker App](https://morning-headland-66565.herokuapp.com/)
+
 
 ## Description
 A note taking application allows you to save and delete notes that you may have for the day.
 
-<iframe src="https://drive.google.com/file/d/1XG3ub8tpNWf4608M_h_v00uSRcNCr_ZO/preview" width="640" height="480"></iframe>
+<!-- <iframe src="https://drive.google.com/file/d/1XG3ub8tpNWf4608M_h_v00uSRcNCr_ZO/preview" width="640" height="480"></iframe> -->
 
 ## Table Of Contents
   - [Description](#discriptionOfProject)

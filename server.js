@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extend: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-require('./endoints/endpoints')(app);
+require('./routes/routes')(app);
 // app.listen one line function watch video 11.24 1 hr 10 minutes in
 app.listen(PORT, function () {
     console.log("Listening PORT: " + PORT)
