@@ -46,7 +46,7 @@ module.exports = app => {
             });
 
         app.delete("/api/notes/:id", function (req, res) {
-                
+                var id = $(this).data("id")
                 for (var i = 0; i < id.length; i++) {
               if (chosen === id[i].routeName) {
                 return res.json(id[i]);
