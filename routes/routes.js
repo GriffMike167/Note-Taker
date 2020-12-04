@@ -26,6 +26,20 @@ module.exports = app => {
             return res.json(newNotes)
             
         });
+        // router.delete("/api/cats/:id", function(req, res) {
+        //     var condition = "id = " + req.params.id;
+        //     console.log("condition", condition);
+        //     cat.delete(condition, function(result) {
+        //         console.log(result);
+        //         if (result.affectedRows === 0) {
+        //             // If no rows were changed, then the ID must not exist, so 404
+        //             console.log(result.affectedRows)
+        //             return res.status(404).end();
+        //         } else {
+        //             res.status(200).end();
+        //         }
+        //     });
+        // })
         app.get("/api/notes/:id", function (req, res) {
             res.json(notes);
             
@@ -53,8 +67,8 @@ module.exports = app => {
               }
             };
                 updateDb();
-                console.log("You deleted note: "+newNotes.title+"from your library.")
-                return res.json(notes)
+                // console.log("You deleted note: "+newNotes.title+"from your library.")
+                // return res.json(notes)
             });
         app.get("/notes", function (req, res) {
                 return res.sendFile(path.join(__dirname, "../public/notes.html"));
