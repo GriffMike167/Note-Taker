@@ -47,7 +47,11 @@ module.exports = app => {
 
         app.delete("/api/notes/:id", function (req, res) {
                 
-                notes.splice(req.params.id[i], 1);
+                for (var i = 0; i < id.length; i++) {
+              if (chosen === id[i].routeName) {
+                return res.json(id[i]);
+              }
+            };
                 updateDb();
                 console.log("You deleted note: "+newNotes.title+"from your library.")
                 return res.json(notes)
