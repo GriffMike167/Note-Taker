@@ -18,7 +18,7 @@ module.exports = app => {
                 res.json(notes);
             });
 
-        app.post("/api/notes", function(req, res){
+        app.post("/api/notes/:id", function(req, res){
             let newNotes = req.body;
             notes.push(newNotes);
             updateDb();
