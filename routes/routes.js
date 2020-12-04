@@ -13,7 +13,14 @@ module.exports = app => {
         var notes = JSON.parse(data);
 
         
-        
+        app.post("/api/notes", function(req, res){
+            let newNotes = req.body;
+            notes.push(newNotes);
+            updateDb();
+            console.log("You added new note: "+newNotes.title+" to your library.") 
+            return res.json(newNotes)
+            
+        });
             app.get("/api/notes/:id", function(req, res) {
             // What does this code do?
             var chosen = req.params.id;
@@ -30,14 +37,7 @@ module.exports = app => {
             return res.send("No character found");
           });
 
-        app.post("/api/notes", function(req, res){
-            let newNotes = req.body;
-            notes.push(newNotes);
-            updateDb();
-            console.log("You added new note: "+newNotes.title+" to your library.") 
-            return res.json(newNotes)
-            
-        });
+       
         
         app.delete("/:id", function (req, res) {
             res.json(notes);
