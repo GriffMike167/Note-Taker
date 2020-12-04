@@ -18,7 +18,7 @@ module.exports = app => {
                 res.json(notes);
             });
 
-        app.post("/api/notes/:newNotes", function(req, res){
+        app.post("/api/notes", function(req, res){
             let newNotes = req.body;
             notes.push(newNotes);
             updateDb();
@@ -47,7 +47,7 @@ module.exports = app => {
 
         app.delete("/api/notes/:id", function (req, res) {
                 
-                notes.splice(newNotes);
+                notes.splice(req.params.id[i], 1);
                 updateDb();
                 console.log("You deleted note: "+newNotes.title+"from your library.")
                 return res.json(notes)
@@ -61,7 +61,7 @@ module.exports = app => {
             });
 
         function updateDb() {
-            fs.writeFile("db/db.json", JSON.stringify(notes), err => {
+            fs.writeFile("db/db.json", JSON.stringify(notes, '\t'), err => {
                 if (err) throw err;
                 return true;
 
