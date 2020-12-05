@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { get } = require('http');
 const path = require('path');
 
 
@@ -12,10 +13,14 @@ module.exports = app => {
 
         var notes = JSON.parse(data);
 
+        get.app("/api/notes", function (req, res){
+            res.json(notes);
+        })
+
         
         app.post("/api/notes", function(req, res){
-            
-            notes.push(req.body);
+            let newNotes = req.body
+            notes.push(newNotes);
             updateDb();
             console.log("You added new note: "+newNotes.title+" to your library.") 
             return res.json(newNotes)
