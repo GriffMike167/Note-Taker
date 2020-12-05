@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 app.use("/api", routes);
+app.use("/", routes);
 
 // app.listen one line function watch video 11.24 1 hr 10 minutes in
 app.listen(PORT, function () {
