@@ -12,7 +12,7 @@ module.exports = app => {
 
         var notes = JSON.parse(data);
 
-        get.app("/api/notes", function (req, res){
+        app.get("/api/notes", function (req, res){
             res.json(notes);
         })
 
