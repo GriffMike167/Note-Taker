@@ -22,36 +22,25 @@ module.exports = app => {
             
         });
             app.get("/api/notes/:id", function(req, res) {
-            // What does this code do?
-            var chosen = req.params.id;
-            console.log(chosen);
-          
-            // What does this code do?
-            for (var i = 0; i < notes.length; i++) {
-              if (chosen === notes[i].routeName) {
-                return res.json(notes[i]);
-              }
-            }
-          
-            // What does this code do?
-            return res.send("No character found");
+            res.json(notes[req.params.id])
           });
 
        
         
-        app.delete("/:id", function (req, res) {
-            res.json(notes);
-            
+        app.delete("/api/notes/:id", function (req, res) {
+            notes.splice(req.params.id, 1);
+            updateDB();
+            console.log("Deleted note with id "+req.params.id)
         
             });
 
         
         app.get("/notes", function (req, res) {
-                return res.sendFile(path.join(__dirname, "../public/notes.html"));
+                res.sendFile(path.join(__dirname, "../public/notes.html"));
             });
 
         app.get('*', function (req, res) {
-                return res.sendFile(path.join(__dirname, "../public/index.html"));
+                res.sendFile(path.join(__dirname, "../public/index.html"));
             });
 
         function updateDb() {
