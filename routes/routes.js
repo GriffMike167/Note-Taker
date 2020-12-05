@@ -21,8 +21,8 @@ module.exports = app => {
             let newNotes = req.body
             notes.push(newNotes);
             updateDb();
-            console.log("You added new note: "+newNotes.title+" to your library.") 
-            return res.json(newNotes)
+            return console.log("You added new note: "+newNotes.title+" to your library.") 
+            // res.json(newNotes)
             
         });
             app.get("/api/notes/:id", function(req, res) {
@@ -31,7 +31,7 @@ module.exports = app => {
 
        
         
-        app.delete("/api/notes", function (req, res) {
+        app.delete("/api/notes/:id", function (req, res) {
             let oldNotes = req.body
             notes.splice(oldNotes, 1);
             updateDB();
