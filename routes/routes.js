@@ -14,8 +14,8 @@ module.exports = app => {
 
         
         app.post("/api/notes", function(req, res){
-            let newNotes = req.body;
-            notes.push(newNotes);
+            
+            notes.push(req.body);
             updateDb();
             console.log("You added new note: "+newNotes.title+" to your library.") 
             return res.json(newNotes)
