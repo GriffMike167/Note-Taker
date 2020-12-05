@@ -13,57 +13,34 @@ module.exports = app => {
         var notes = JSON.parse(data);
 
         
-        
-        app.get("/api/notes", function (req, res) {
-                res.json(notes);
-            });
-
         app.post("/api/notes", function(req, res){
-            let newNotes = req.body;
-            notes.push(newNotes);
+            
+            notes.push(req.body);
             updateDb();
             console.log("You added new note: "+newNotes.title+" to your library.") 
             return res.json(newNotes)
             
         });
-        app.delete("/api/notes/:id", function(req, res) {
-            var condition = "id = " + req.params.id;
-            console.log("condition", condition);
-            notes.delete(condition, function(result) {
-                console.log(result);
-                if (result.affectedRows === 0) {
-                    // If no rows were changed, then the ID must not exist, so 404
-                    console.log(result.affectedRows)
-                    return res.status(404).end();
-                } else {
-                    res.status(200).end();
-                }
-            });
-            updateDb();
-        });
-        app.get("/api/notes/:id", function (req, res) {
-            res.json(notes);
-            
+            app.get("/api/notes/:id", function(req, res) {
+            res.json(notes[req.params.id])
+          });
+
+       
+        
+        app.delete("/api/notes/:id", function (req, res) {
+            notes.splice(req.params.id, 1);
+            updateDB();
+            console.log("Deleted note with id "+req.params.id)
         
             });
 
-        // app.delete("/api/notes/:id", function (req, res) {
-        //         var id = $(this).data("id")
-        //         for (var i = 0; i < id.length; i++) {
-        //       if (chosen === id[i].routeName) {
-        //         return res.json(id[i]);
-        //       }
-        //     };
-                
-        //         // console.log("You deleted note: "+newNotes.title+"from your library.")
-        //         // return res.json(notes)
-        //     });
+        
         app.get("/notes", function (req, res) {
-                return res.sendFile(path.join(__dirname, "../public/notes.html"));
+                res.sendFile(path.join(__dirname, "../public/notes.html"));
             });
 
         app.get('*', function (req, res) {
-                return res.sendFile(path.join(__dirname, "../public/index.html"));
+                res.sendFile(path.join(__dirname, "../public/index.html"));
             });
 
         function updateDb() {
