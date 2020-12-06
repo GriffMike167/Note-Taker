@@ -25,8 +25,21 @@ module.exports = app => {
              return res.json(newNotes)
             
         });
-            app.get("/api/notes/:id", function(req, res) {
-            res.json(notes[req.params.id])
+        //     app.get("/api/notes/:id", function(req, res) {
+        //     res.json(notes[req.params.id])
+        //   });
+          app.get("/api/notes/:id", function(req, res) {
+            var chosen = req.params.id;
+          
+            console.log(chosen);
+          
+            for (var i = 0; i < notes.length; i++) {
+              if (chosen === notes[i].routeName) {
+                return res.json(notes[i]);
+              }
+            }
+          
+            return res.json(false);
           });
 
        
