@@ -21,8 +21,8 @@ module.exports = app => {
             let newNotes = req.body
             notes.push(newNotes);
             updateDb();
-            return console.log("You added new note: "+newNotes.title+" to your library.") 
-            // res.json(newNotes)
+            console.log("You added new note: "+newNotes.title+" to your library.") 
+             return res.json(newNotes)
             
         });
             app.get("/api/notes/:id", function(req, res) {
