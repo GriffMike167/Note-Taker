@@ -32,6 +32,7 @@ module.exports = app => {
        
         
         app.delete("/api/notes/:id", function (req, res) {
+            notes.splice(req.params.id, 1)
             res.send("delete")
             console.log(`Deleted note with id ${title}`)
         
@@ -47,7 +48,7 @@ module.exports = app => {
             });
 
         function updateDb() {
-            fs.writeFile("db/db.json", JSON.stringify(notes, '\t'), err => {
+            fs.writeFile("db/db.json", JSON.stringify(notes), err => {
                 if (err) throw err;
                 return true;
 
