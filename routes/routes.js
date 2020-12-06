@@ -32,10 +32,8 @@ module.exports = app => {
        
         
         app.delete("/api/notes/:id", function (req, res) {
-            let oldNotes = req.body
-            notes.splice(oldNotes, 1);
-            updateDB();
-            console.log("Deleted note with id "+oldNotes.title)
+            res.send("delete")
+            console.log(`Deleted note with id ${title}`)
         
             });
 
